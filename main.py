@@ -206,6 +206,10 @@ while(True):
             reporte.write('</html>')
 
             webbrowser.open('reporte.html')
+            edades.clear()
+            promedios.clear()
+            nombres.clear()
+            estados.clear()
         
     if 'SALIR' in entrada:
         exit()
