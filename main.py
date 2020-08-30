@@ -1,5 +1,6 @@
 import json
 import webbrowser
+import re
 
 #CARGAR archivo1.json, archivo2.json
 lista = []
@@ -9,6 +10,7 @@ promedios = []
 nombres = []
 edades = []
 estados = []
+
 
 def datos_edades():
     for e in memoria:
@@ -121,148 +123,39 @@ while(True):
 
     if 'SELECCIONAR' in entrada and '*' in entrada:
         for ele in memoria:
-            print(ele)
+            print('Nombre: ', ele["nombre"])
+            print('Edad: ', ele["edad"])
+            print('Promedio: ', ele["promedio"])
+            print('Activo: ', ele["activo"])
 
-    if 'SELECCIONAR' in entrada and 'DONDE nombre =' in entrada:
+    if 'SELECCIONAR' in entrada and 'DONDE' in entrada:
+        #print(entrada)
         cahrl = entrada.split()
         atributo = cahrl[tamaño(cahrl) - 1]
         #print(atributo)
-        if atributo.endswith('"'):
+        hol = re.findall('nombre|edad|promedio|activo', entrada)
+        del hol[-1]
+
+        if entrada.endswith('"'):
             atributo = atributo.replace('"', '')
-    
-            if entrada.startswith('SELECCIONAR nombre') and 'edad' in entrada and 'promedio' in entrada and 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print('Nombre: ', e["nombre"])
-                        print('Edad: ', e["edad"])
-                        print("Promedio: ", e["promedio"])
-                        print("Activo: ", e["activo"])
+            for e in memoria:
+                ename = e["nombre"]
+                if ename == atributo:
+                    for cad in hol:
+                        print(cad,': ', e[cad])
 
-            elif 'edad' in entrada and 'promedio' in entrada and 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print('Edad: ', e["edad"])
-                        print("Promedio: ", e["promedio"])
-                        print("Activo: ", e["activo"])
-            
-            elif 'nombre' in entrada and 'promedio' in entrada and 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print('Nombre: ', e["nombre"])
-                        print("Promedio: ", e["promedio"])
-                        print("Activo: ", e["activo"])
+        else:
+            #print(atributo)
+            #print(hol)
+            for elm in memoria:
+                name = elm["promedio"]
+                #print(name)
+                if float(atributo) == float(name) :
+                    #print('bien')
+                    for cad in hol:
+                        print(cad,': ', elm[cad])
 
-            elif 'nombre' in entrada and 'edad' in entrada and 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print('Nombre: ', e["nombre"])
-                        print("Edad: ", e["edad"])
-                        print("Activo: ", e["activo"])
-
-            elif 'nombre' in entrada and 'edad' in entrada and 'promedio' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print('Nombre: ', e["nombre"])
-                        print("Edad: ", e["edad"])
-                        print("Promedio: ", e["promedio"])
-
-            elif entrada.startswith('SELECCIONAR promedio') in entrada and 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print("Promedio: ", e["promedio"])
-                        print("Activo: ", e["activo"])
-            
-            elif 'activo' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print("Activo: ", e["activo"])
-            
-            elif 'promedio' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print("Promedio: ", e["promedio"])
-            
-            elif 'edad' in entrada:
-                for e in memoria:
-                    ename = e["nombre"]
-                    if ename == atributo:
-                        print("Edad: ", e["edad"])
-              
-    if 'SELECCIONAR' in entrada and 'DONDE promedio =' in entrada:
-
-        if 'nombre' in entrada and 'edad' in entrada and 'promedio' in entrada and 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print('Nombre: ', e["nombre"])
-                    print(e['Edad: ', "edad"])
-                    print(e['Promedio: ', "promedio"])
-                    print(e['Activo: ', "activo"])
-        elif 'edad' in entrada and 'promedio' in entrada and 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print('Edad: ', e["edad"])
-                    print("Promedio: ", e["promedio"])
-                    print("Activo: ", e["activo"])
-            
-        elif 'nombre' in entrada and 'promedio' in entrada and 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print('Nombre: ', e["nombre"])
-                    print("Promedio: ", e["promedio"])
-                    print("Activo: ", e["activo"])
-
-        elif 'nombre' in entrada and 'edad' in entrada and 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print('Nombre: ', e["nombre"])
-                    print("Edad: ", e["edad"])
-                    print("Activo: ", e["activo"])
-
-        elif 'nombre' in entrada and 'edad' in entrada and 'promedio' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print('Nombre: ', e["nombre"])
-                    print("Edad: ", e["edad"])
-                    print("Promedio: ", e["promedio"])
-
-        elif entrada.startswith('SELECCIONAR promedio') in entrada and 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print("Promedio: ", e["promedio"])
-                    print("Activo: ", e["activo"])
-            
-        elif 'activo' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print("Activo: ", e["activo"])
-            
-        elif 'promedio' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print("Promedio: ", e["promedio"])
-            
-        elif 'edad' in entrada:
-            for e in memoria:
-                ename = e["promedio"]
-                if ename == atributo:
-                    print("Edad: ", e["edad"])
-        
+                
     
     if 'REPORTE' in entrada:
        lis = entrada.split()
