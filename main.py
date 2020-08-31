@@ -121,14 +121,20 @@ while(True):
     if 'CUENTA' in entrada:
         print('Numero de registros: ', tamaño(memoria))
 
-    if 'SELECCIONAR' in entrada and '*' in entrada:
+    if entrada.endswith('DONDE *'):
+        hol = re.findall('nombre|edad|promedio|activo', entrada)
+        for elemnt in memoria:
+            for cad in hol:
+                print(cad,': ', elemnt[cad])
+
+    if 'SELECCIONAR *' in entrada:
         for ele in memoria:
             print('Nombre: ', ele["nombre"])
             print('Edad: ', ele["edad"])
             print('Promedio: ', ele["promedio"])
             print('Activo: ', ele["activo"])
 
-    if 'SELECCIONAR' in entrada and 'DONDE' in entrada:
+    if 'SELECCIONAR' in entrada and 'DONDE' in entrada and not(entrada.endswith('*')):
         #print(entrada)
         cahrl = entrada.split()
         atributo = cahrl[tamaño(cahrl) - 1]
