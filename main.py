@@ -57,8 +57,7 @@ while(True):
     entrada = input('Comando: ')
     entrada = entrada.replace(",", "")
 
-
-    if 'CARGAR' in entrada:
+    if re.match('[Cc][Aa][Rr][Gg][Aa][Rr]', entrada):
         memoria.clear()
         lista = entrada.split()
         for elemnt in lista:
@@ -70,7 +69,7 @@ while(True):
                     #print(regis)
         print("Cargado con exito")
 
-    if 'MAXIMO' in entrada and 'edad' in entrada:
+    if re.match('[Mm][Aa][Xx][Ii][Mm][Oo]\s[Ee][Dd][Aa][Dd]', entrada):
         for e in memoria:
             ename = e["edad"]
             edades.append(ename)
@@ -79,7 +78,7 @@ while(True):
         print("Edad maxima: ", edades[posicion - 1])
         edades.clear()
 
-    if 'MAXIMO' in entrada and 'promedio' in entrada:
+    if re.match('[Mm][Aa][Xx][Ii][Mm][Oo]\s[Pp][Rr][Oo][Mm][Ee][Dd][Ii][Oo]', entrada):
         for e in memoria:
             ename = e["promedio"]
             promedios.append(ename)
@@ -88,7 +87,7 @@ while(True):
         print("Promedio maximo: ", promedios[posicion - 1])
         promedios.clear()
     
-    if 'MINIMO' in entrada and 'edad' in entrada:
+    if re.match('[Mm][Ii][Nn][Ii][Mm][Oo]\s[Ee][Dd][Aa][Dd]', entrada):
         for e in memoria:
             ename = e["edad"]
             edades.append(ename)
@@ -96,7 +95,7 @@ while(True):
         print("Edad minima: ", edades[0])
         edades.clear()
 
-    if 'MINIMO' in entrada and 'promedio' in entrada:
+    if re.match('[Mm][Ii][Nn][Ii][Mm][Oo]\s[Pp][Rr][Oo][Mm][Ee][Dd][Ii][Oo]', entrada):
         for e in memoria:
             ename = e["promedio"]
             promedios.append(ename)
@@ -104,21 +103,21 @@ while(True):
         print("Promedio minimo: ", promedios[0])
         promedios.clear()
         
-    if 'SUMA' in entrada and 'edad' in entrada:
+    if re.match('[Ss][Uu][Mm][Aa]\s[Ee][Dd][Aa][Dd]', entrada):
         suma = 0
         for e in memoria:
             ename = e["edad"]
             suma = suma + int(ename)
         print('Suma de edades: ', suma)
 
-    if 'SUMA' in entrada and 'promedio' in entrada:
+    if re.match('[Ss][Uu][Mm][Aa]\s[Pp][Rr][Oo][Mm][Ee][Dd][Ii][Oo]', entrada):
         suma = 0
         for e in memoria:
             ename = e["promedio"]
             suma = suma + float(ename)
         print('Suma de promedios: ', round(suma,2))
                 
-    if 'CUENTA' in entrada:
+    if re.match('[Cc][Uu][Ee][Nn][Tt][Aa]', entrada):
         print('Numero de registros: ', tamaño(memoria))
 
     if entrada.endswith('DONDE *'):
@@ -127,14 +126,14 @@ while(True):
             for cad in hol:
                 print(cad,': ', elemnt[cad])
 
-    if 'SELECCIONAR *' in entrada:
+    if re.match('[Ss][Ee][Ll][Ee][Cc][Cc][Ii][Oo][Nn][Aa][Rr]\s[*]', entrada):
         for ele in memoria:
             print('Nombre: ', ele["nombre"])
             print('Edad: ', ele["edad"])
             print('Promedio: ', ele["promedio"])
             print('Activo: ', ele["activo"])
 
-    if 'SELECCIONAR' in entrada and 'DONDE' in entrada and not(entrada.endswith('*')):
+    if re.match('[Ss][Ee][Ll][Ee][Cc][Cc][Ii][Oo][Nn][Aa][Rr]', entrada) and not(entrada.endswith('*')):
         #print(entrada)
         cahrl = entrada.split()
         atributo = cahrl[tamaño(cahrl) - 1]
@@ -163,7 +162,7 @@ while(True):
 
                 
     
-    if 'REPORTE' in entrada:
+    if re.match('[Rr][Ee][Pp][Oo][Rr][Tt][Ee]\s[0-9]*', entrada):
        lis = entrada.split()
        N = 0
        N = int(lis[tamaño(lis) - 1])
@@ -217,7 +216,7 @@ while(True):
             nombres.clear()
             estados.clear()
         
-    if 'SALIR' in entrada:
+    if re.match('[Ss][Aa][Ll][Ii][Rr]', entrada):
         exit()
 
        
