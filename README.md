@@ -1,4 +1,4 @@
-# 201906053_PracticaUnica
+# 201906053_PracticaUnicaLFP
 ## Manual de Usuario SimpleSQL
 Este proyecto se basa en la carga de registros en formato json, los cuales deben poseer una estructura como la de este [ejemplo], los cuales pueden ser 
 consultados de una manera simple sin tener que recorrer registro por registro, este consta de diferentes comandos los cuales realizan una accion
